@@ -1,0 +1,530 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(150deg, #fafafa9a, #ffffff);
+}
+
+header {
+  background: linear-gradient(135deg, #0000003a, #00000096);
+  color: #000;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+
+  /* Aquí agregamos la animación */
+  box-shadow: 0 0 15px #1900ff;
+  animation: moverSombra 4s infinite alternate ease-in-out;
+}
+
+/* Animación de la línea azul que se mueve y cambia de color */
+@keyframes moverSombra {
+  0% {
+    box-shadow: 0 0 6px #0d47a1, 0 0 12px #1976d2; /* Azul fuerte y brillante */
+  }
+  50% {
+    box-shadow: 5px 0 7px #880e4f, 0 0 14px #ad1457; /* Violeta fuerte / fucsia oscuro */
+  }
+  100% {
+    box-shadow: 0 0 6px #0d47a1, 0 0 12px #1976d2;
+  }
+}
+
+/* Cielo animado con estrellas y meteorito */
+.cielo-animado {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 100px;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.estrella {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: parpadeo 2s infinite;
+  z-index: 2;
+}
+
+.estrella1 { top: 20px; left: 30px; animation-delay: 0s; }
+.estrella2 { top: 50px; left: 120px; animation-delay: 1s; }
+.estrella3 { top: 10px; left: 220px; animation-delay: 0.5s; }
+.estrella4 { top: 70px; left: 300px; animation-delay: 0.8s; }
+.estrella5 { top: 40px; left: 400px; animation-delay: 1.3s; }
+.estrella6 { top: 80px; left: 500px; animation-delay: 1.6s; }
+
+@keyframes parpadeo {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+.meteorito {
+  position: absolute;
+  top: 10px;
+  left: -200px;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, #fff, transparent);
+  transform: rotate(45deg);
+  animation: meteoritoAnimado 4s linear infinite;
+  opacity: 0.8;
+  z-index: 3;
+}
+
+@keyframes meteoritoAnimado {
+  0% {
+    transform: translate(-200px, 0) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(800px, 300px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+header h1 {
+  grid-column: 2;
+  text-align: center;
+  margin: 25px auto;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #ffffff;
+  text-shadow:
+    2px 2px 0 #ccc,
+    4px 4px 0 #3a638a,
+    6px 6px 0 #666,
+    5px 5px 5px rgb(122, 175, 171);
+  animation: latido 5s ease-in-out infinite;
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes latido {
+  5%, 100% { transform: scale(1); }
+  60% { transform: scale(1.1); }
+}
+
+.carrito {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.carrito span {
+  background: #c5c5c5;
+  color: #000000;
+  font-size: 15px;
+  border-radius: 60%;
+  padding: 2px 6px;
+  position: absolute;
+  top: -10px;
+  right: 10px;
+}
+
+/* Contenido principal */
+main {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+/* Producto individual */
+
+.producto {
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+  position: relative;
+  width: 150px;
+}
+
+.producto img {
+  width: 99%;
+  height: 145px;
+  object-fit: cover;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  
+}
+
+.producto img:hover {
+  transform: scale(1) rotate(6deg);
+  box-shadow: 0 10px 20px rgb(2, 245, 233);
+}
+
+.producto h3,
+.producto p {
+  margin: 8px 0;
+}
+
+/* Botones generales */
+button {
+  background: linear-gradient(50deg, #003cff, #000);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgb(233, 233, 233);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgb(134, 216, 1);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(137, 155, 175, 0.5);
+}
+
+/* Botón de eliminar, para distinguir */
+.btn-eliminar {
+  background-color: #dc3545; /* Rojo */
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.btn-eliminar:hover {
+  background-color: #a71d2a; /* Rojo oscuro */
+}
+
+/* Panel del carrito */
+.carrito-panel {
+  position: fixed;
+  top: 120px;
+  right: 15px;
+  width: 220px;
+  max-height: 300px;
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+}
+
+.carrito-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carrito-panel button {
+  display: block;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.carrito-panel button:last-child {
+  background-color: #006deb;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.carrito-panel button:last-child:hover {
+  background-color: #0050aa;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+.formulario-pago {
+  max-width: 400px;
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgb(0, 0, 0);
+  font-family: Arial, sans-serif;
+}
+
+.formulario-pago input {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.formulario-pago button {
+  width: 48%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 4%;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.formulario-pago button:last-child {
+  background-color: #dc3545;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #222;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilo oscuro */
+body.modo-oscuro {
+  background-color: #121212;
+  color: #000000;
+}
+
+/* Puedes agregar más estilos para elementos según modo */
+body.modo-oscuro header {
+  background-color: #02b7ff;
+}
+
+body.modo-oscuro button {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#btn-toggle-modo {
+  position: absolute;
+  top: 15px;
+  right: 75px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 950;
+  color: inherit;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-contenido {
+  background: rgb(196, 188, 188);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#modal-detalle {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#modal-contenido {
+  background-color: white;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh; /* Limita altura al 80% de la ventana */
+  padding: 20px;
+  border-radius: 8px;
+  overflow-y: auto; /* Permite scroll vertical */
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Opcional: para que la imagen no sea muy grande */
+#modal-imagen {
+  max-width: 75%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+#quienes-somos {
+  padding: 2rem;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  margin: 2rem 0;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+#quienes-somos h2 {
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #ff0000; /* color dorado */
+}
+
+.etiqueta-contacto {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 1000;
+  font-weight: bold;
+}
+
+.menu-servicios {
+  position: relative;
+}
+
+.etiqueta-servicios {
+  position: absolute;
+  top: 100%; /* Debajo del enlace */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: rgb(252, 252, 252);
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  margin-top: 8px;
+  display: none;  /* Oculto por defecto */
+  z-index: 20;
+  width: max-content;
+  min-width: 180px;
+}
+
+.etiqueta-servicios ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.etiqueta-servicios ul li {
+  margin-bottom: 6px;
+}
+
+.etiqueta-servicios ul li:last-child {
+  margin-bottom: 0;
+}
+
+.bloque-cita {
+  margin-bottom: 20px;
+}
+
+#formulario-cita {
+  background-color: #f2f2f2;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+@keyframes giro-constante {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+#logo-personal {
+  position: absolute;
+  top: 30px;
+  left: 40%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transform: translateX(-50%);
+  background-color: white;
+    animation: giro-constante 8s linear infinite; /* Rotación constante */
+}
+

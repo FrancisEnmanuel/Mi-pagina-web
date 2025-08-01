@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venus Store</title>
+  <link rel="icon" type="image/png" href="img/Logo.png"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="cielo-animado">
+      <div class="estrella estrella1"></div>
+      <div class="estrella estrella2"></div>
+      <div class="estrella estrella3"></div>
+      <div class="estrella estrella4"></div>
+      <div class="estrella estrella5"></div>
+      <div class="estrella estrella6"></div>
+      <div class="meteorito"></div>
+    </div>
+    
+<img src="img/Logo.png" alt="Mi logo" id="logo-personal">
+
+              <h1>Venus Store</h1>
+
+    <div class="carrito">
+      <span id="cart-count">0</span>
+
+      
+        <nav class="menu">
+    <ul>
+      <li><a href="#productos">Productos</a></li>
+      <li class="menu-servicios">
+  <a href="#servicios" onclick="toggleEtiquetaServicios(event)">Servicios</a>
+  <div id="etiqueta-servicios" class="etiqueta-servicios">
+    <ul>
+      <li>Venta de hardware</li>
+      <li>Soporte técnico $75</li>
+      <li>Asesoría personalizada $25</li>
+      <li>Instalación y mantenimiento $100</li>
+    </ul>
+  </div>
+</li>
+      <li><a href="#" onclick="mostrarEtiqueta('829-773-8315')">Contacto</a></li>
+    </ul>
+  </nav>
+       </div>
+        </header>
+
+    <div id="etiqueta-contacto" class="etiqueta-contacto">
+  📞 (829) 773-8315
+</div>
+        
+  <main id="productos">
+    <!-- Los productos se insertan desde JavaScript -->
+  </main>
+
+  <aside class="carrito-panel" id="carrito-panel">
+    <h2> 🛒 Carrito</h2>
+    <ul id="carrito-lista"></ul>
+    <p>Total: $ <span id="carrito-total">0</span></p>
+    <button onclick="finalizarCompra()">Finalizar compra</button>
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+  </aside>
+
+  <section id="servicios">
+  <h2>Servicios</h2>
+  <!-- Bloque de cita justo debajo del nombre -->
+  <div class="bloque-cita">
+    <p>¿Necesitas mantenimiento para tu equipo?</p>
+    <button onclick="mostrarFormularioCita()">Solicitar cita</button>
+  </div>
+
+  <!-- Formulario oculto inicialmente -->
+  <div id="formulario-cita" style="display: none;">
+    <h4>Formulario de cita</h4>
+    <form onsubmit="enviarCita(event)">
+      <label>Nombre:</label><br>
+      <input type="text" id="nombre-cita" required><br><br>
+
+      <label>Correo:</label><br>
+      <input type="email" id="correo-cita" required><br><br>
+
+      <label>Fecha preferida:</label><br>
+      <input type="date" id="fecha-cita" required><br><br>
+
+      <label>Descripción del problema:</label><br
+      <textarea id="descripcion-cita" rows="3" required></textarea><br><br>
+      <button type="submit">Enviar cita</button>
+      <button type="button" onclick="cancelarCita()">Cancelar</button>
+    </form>
+  </div>
+
+  <!-- Aquí puedes poner el resto de servicios -->
+  <div class="servicio">
+    <h3>Formateo de equipos</h3>
+    <p>Precio: $100</p>
+  </div>
+  <div class="servicio">
+    <h3>Instalación de programas</h3>
+    <p>Precio: $15 </p>
+  </div>
+</section>
+
+  <div id="pago-formulario" style="display: none;" class="formulario-pago">
+  <h2>Método de Pago</h2>
+  <form onsubmit="return procesarPago(event)">
+    <label for="nombre">Nombre en la tarjeta:</label><br>
+    <input type="text" id="nombre" required><br><br>
+
+    <label for="tarjeta">Número de tarjeta:</label>
+<input type="text" id="tarjeta" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" />
+
+    <label for="fecha-exp">Fecha de expiración:</label>
+<input type="text" id="fecha-exp" maxlength="5" placeholder="MM/AA" />
+
+    <label for="cvv">CVV:</label><br>
+    <input type="text" id="cvv" maxlength="3" required><br><br>
+
+    <button type="submit">Pagar</button>
+    <button type="button" onclick="cancelarPago()">Cancelar</button>
+  </form>
+</div>
+  
+<button id="btn-toggle-modo" aria-label="Cambiar modo">
+  ☀️
+</button>
+
+<div id="modal-detalle" class="modal" style="display:none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+  <div class="modal-contenido" style="background:#a6f08bf8; padding:20px; border-radius:8px; max-width:400px; width:90%; position: relative;">
+    <button onclick="cerrarModal()" style="position:absolute; top:10px; right:10px; font-size:20px; border:none; background:none; cursor:pointer;">×</button>
+    <h2 id="modal-nombre"></h2>
+    <img id="modal-imagen" src="" alt="" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+    <p id="modal-descripcion" style="font-style: italic; margin-bottom: 10px;"></p>
+    <ul id="modal-caracteristicas" style="padding-left: 20px; margin-bottom: 10px;"></ul>
+    <p id="modal-precio" style="font-weight: bold; margin-bottom: 20px;"></p>
+    <button id="btn-scroll-abajo" style="padding:10px 15px; cursor:pointer; margin-bottom: 10px;">
+  ↓ Ver más
+</button>
+    <button id="modal-agregar-btn" style="padding:10px 15px; cursor:pointer;">Agregar al carrito</button>
+    
+  </div>
+</div>
+
+<div id="modal-detalle">
+  <div id="modal-contenido">
+    <button onclick="cerrarModal()" style="float:right;">✖️</button>
+    <h2 id="modal-nombre"></h2>
+    <img id="modal-imagen" src="" alt="">
+    <p id="modal-precio"></p>
+    <p id="modal-descripcion"></p>
+    <ul id="modal-caracteristicas"></ul>
+    <button id="modal-agregar-btn">Agregar al carrito</button>
+  </div>
+</div>
+
+
+<style>
+  .modal {
+    display: none;
+    position: fixed; 
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  .modal-contenido {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+  }
+  .modal-contenido button {
+    cursor: pointer;
+  }
+</style>
+<ul id="modal-caracteristicas" style="text-align: left; margin-top: 10px;"></ul>
+  <script src="script.js"></script>
+<section id="quienes-somos">
+  <h2>¿Quiénes somos?</h2>
+  <p>
+    <strong>Venus Store</strong>, nos apasiona acercarte lo mejor en innovación tecnológica. Desde laptops de alto rendimiento hasta consolas de última generación, seleccionamos cada producto con cuidado para garantizarte calidad, respaldo y una experiencia superior.
+  </p>
+  <p>
+    Somos un equipo joven, dinámico y comprometido, convencido de que la tecnología tiene el poder de mejorar la vida de las personas. Nuestra misión es ofrecerte una experiencia de compra confiable, ágil y segura, ya sea que necesites potenciar tu trabajo, estudios o momentos de entretenimiento.
+  </p>
+  <p>
+    Gracias por elegirnos. Estamos aquí para acompañarte en cada paso hacia el futuro.
+  </p>
+</section>
+</body>
+</html>
